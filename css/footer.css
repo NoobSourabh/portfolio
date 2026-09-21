@@ -95,14 +95,16 @@ footer {
   
   footer .explosion-particle-img {
     position: absolute;
-    bottom: -200px;
+    bottom: -100px;
     left: 50%;
-    width: 150px;
-    border-radius: 1rem;
-    height: auto;
-    object-fit: cover;
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
     transform: translateX(-50%);
     will-change: transform;
+    pointer-events: none;
+    user-select: none;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 8px rgba(255, 255, 255, 0.35));
   }
   
   @media (max-width: 1000px) {

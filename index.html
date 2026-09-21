@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prashant Koirala | Portfolio</title>
+    <title>Sourabh Chouhan | Frontend & Creative Developer</title>
     <link rel="icon" href="/images/global/site-icon.png" />
 
     <link rel="stylesheet" href="/css/transition.css" />
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/css/menu.css" />
     <link rel="stylesheet" href="/css/home.css" />
     <link rel="stylesheet" href="/css/about.css" />
-    <link rel="stylesheet" href="/css/project.css" />
+    <link rel="stylesheet" href="/css/work.css" />
     <link rel="stylesheet" href="/css/contact.css" />
     <link rel="stylesheet" href="/css/footer.css" />
 
@@ -32,7 +32,7 @@
         <nav>
           <div class="logo">
             <div class="logo-container">
-              <p class="mn"><a href="/">P ✦ K</a></p>
+              <p class="mn"><a href="/">S ✦ C</a></p>
             </div>
           </div>
           <div class="menu-toggle-btn">
@@ -48,14 +48,6 @@
             <div class="nav-item active">
               <p><a href="/">Home</a></p>
             </div>
-
-            <!-- Might add in future but disabled for now - Prashant -->
-            <!-- <div class="nav-item">
-              <p><a href="/work">Work</a></p>
-            </div>
-            <div class="nav-item">
-              <p><a href="/about">About</a></p>
-            </div> -->
             <div class="nav-item">
               <p><a href="/contact">Contact</a></p>
             </div>
@@ -66,8 +58,9 @@
                 <p class="mn">Find Me</p>
               </div>
               <div class="nav-footer-item-copy">
-                <p class="mn"><a href="https://github.com/prashantkoirala465" target="_blank">Github</a></p>
-                <p class="mn"><a href="https://www.linkedin.com/in/prashantkoirala/" target="_blank">LinkedIn</a></p>
+                <p class="mn"><a href="https://github.com/NoobSourabh" target="_blank" rel="noopener noreferrer">Github</a></p>
+                <p class="mn"><a href="https://www.linkedin.com/in/sourabh-chouhan31/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+                <p class="mn"><a href="https://leetcode.com/u/SourabhNoob/" target="_blank" rel="noopener noreferrer">LeetCode</a></p>
               </div>
             </div>
             <div class="nav-footer-item">
@@ -81,8 +74,8 @@
               </div>
               <div class="nav-footer-item-copy">
                 <p class="mn">
-                  <a href="mailto:prashantkoirala465@gmail.com" target="_blank"
-                    >prashantkoirala465@gmail.com</a
+                  <a href="mailto:inbox.sourabhc@gmail.com" target="_blank"
+                    >inbox.sourabhc@gmail.com</a
                   >
                 </p>
               </div>
@@ -94,10 +87,10 @@
       <section class="hero">
         <div class="hero-header-wrapper">
           <div class="hero-header hero-header-1">
-            <h1>Prashant</h1>
+            <h1>Sourabh</h1>
           </div>
           <div class="hero-header hero-header-2">
-            <h1>Koirala</h1>
+            <h1>Chouhan</h1>
           </div>
         </div>
         <div class="hero-footer">
@@ -108,7 +101,7 @@
             <p class="mn"><a href="https://drive.google.com/file/d/1lhunYlVGdRqDiOsPf6xECVWj0x6tDbzR/view?usp=sharing" target="_blank" class="resume-link"> Fetch // Resume</a></p>
           </div>
           <div class="hero-footer-tags">
-            <p class="mn">Showcase Mode: ON </p>
+            <p class="mn">Showcase Mode: ON</p>
           </div>
         </div>
       </section>
@@ -116,198 +109,118 @@
       <!-- home - hero img holder -->
       <section class="hero-img-holder">
         <div class="hero-img">
-          <img src="/images/hero/image-1.jpg" alt="" />
+          <img src="/images/hero/hero-1.png" alt="Showcase Work" />
         </div>
       </section>
 
+      <!-- about - about hero -->
+      <section class="about-hero">
+        <div class="about-hero-header">
+          <h1>Hi, I'm</h1>
+          <h1>Sourabh</h1>
+        </div>
+        <div class="about-hero-bio">
+          <p class="ss">
+            I'm a Frontend & Creative Developer who specializes in building high-performance web applications, interactive web tools, browser extensions, and AI automation workflows. Passionate about modern frontend architectures, responsive UI animations, intuitive user experiences, and problem solving with clean code.
+          </p>
+          <p class="mn">Code / Creative / Interactions / Repeat</p>
+        </div>
+        <div class="about-hero-portrait">
+          <img
+            src="/images/services-header/portrait.jpeg"
+            alt="Sourabh Chouhan Portrait"
+          />
+        </div>
+      </section>
 
-
-<!-- about - about hero -->
-<section class="about-hero">
-    <div class="about-hero-header">
-      <h1>Hi, I'm</h1>
-      <h1>Prashant</h1>
-    </div>
-    <div class="about-hero-bio">
-      <p class="ss">
-        I'm a designer and full-stack developer who's obsessed with creating 
-        award-worthy digital experiences. From crafting pixel-perfect interfaces 
-        to architecting robust backend systems, I live at the intersection where 
-        beautiful design meets clean code. My work draws inspiration from the best 
-        of Awwwards — those jaw-dropping sites that make you pause mid-scroll and 
-        wonder "how did they do that?"
-      </p>
-      <p class="mn">Code / Design / Craft / Repeat</p>
-    </div>
-    <div class="about-hero-portrait">
-      <img
-        src="/images/services-header/portrait.jpeg"
-        alt="Prashant Koirala Portrait"
-      />
-    </div>
-  </section>
-
-
-
-
-
-
-
-
-
-
-
-
-      
-
-      <!-- home - featured work -->
+      <!-- home - featured work (dynamically populated from portfolio.json) -->
       <section class="featured-work">
         <div class="featured-images"></div>
-        <div class="featured-titles">
-          <div class="featured-title-wrapper">
-            <h1 class="featured-title">Featured Projects</h1>
-          </div>
-          <div class="featured-title-wrapper">
-            <div class="featured-title-img">
-              <img src="/images/work-items/work-item-1.jpg" alt="" />
-            </div>
-            <h1 class="featured-title">Triad Portfolio</h1>
-          </div>
-          <div class="featured-title-wrapper">
-            <div class="featured-title-img">
-              <img src="/images/work-items/work-item-2.jpg" alt="" />
-            </div>
-            <h1 class="featured-title">Pinnacle Urja</h1>
-          </div>
-          <div class="featured-title-wrapper">
-            <div class="featured-title-img">
-              <img src="/images/work-items/work-item-4.jpg" alt="" />
-            </div>
-            <h1 class="featured-title">Ocean Education</h1>
-          </div>
-          <div class="featured-title-wrapper">
-            <div class="featured-title-img">
-              <img src="/images/work-items/work-item-5.jpg" alt="" />
-            </div>
-            <h1 class="featured-title">Sign2Text</h1>
-          </div>
-        </div>
+        <div class="featured-titles"></div>
         <div class="featured-work-indicator"></div>
         <div class="featured-work-footer">
-          <p class="mn">Project Portfoliio [ 10 ]</p>
+          <p class="mn">Tools &amp; Stack [ 16 ]</p>
           <p class="mn">///////////////////</p>
-          <p class="mn"><a href="#">View All Projects</a></p>
+          <p class="mn"><a href="https://github.com/NoobSourabh" target="_blank" rel="noopener noreferrer">Explore GitHub</a></p>
         </div>
       </section>
 
-      
-
-
-
-           <!-- home - services header -->
-           <section class="services-header">
-            <div class="services-header-content">
-              <div class="services-profile-icon">
-                <img
-                  src="/images/services-header/portrait.jpeg"
-                  alt="Prashant Koirala's Portrait"
-                />
-              </div>
-              <p>Your Vision. My Expertise.</p>
-              <div class="services-header-title">
-                <h1>Full-stack development</h1>
-                <h1>& Design Solutions</h1>
-              </div>
-              <div class="services-header-arrow-icon">
-                <h1>&#8595;</h1>
-              </div>
-            </div>
-          </section>
-
-
-
-
-
-
-
-
-
-          
+      <!-- home - services header -->
+      <section class="services-header">
+        <div class="services-header-content">
+          <div class="services-profile-icon">
+            <img
+              src="/images/services-header/headshot.jpeg"
+              alt="Sourabh Chouhan Headshot"
+            />
+          </div>
+          <p>Your Vision. Engineered.</p>
+          <div class="services-header-title">
+            <h1>Frontend Engineer</h1>
+          </div>
+          <div class="services-header-arrow-icon">
+            <h1>&#8595;</h1>
+          </div>
+        </div>
+      </section>
     
-          <!-- home - services/skills section -->
-          <section class="services">
-            <div class="service-card" id="service-card-1">
-              <div class="service-card-inner">
-                <div class="service-card-content">
-                  <h1>Frontend Development </h1>
-                </div>
-                <div class="service-card-img">
-                  <img
-                    src="/images/services/service-1.jpg"
-                    alt="Front-End Development"
-                  />
-                </div>
-              </div>
+      <!-- home - services/skills section (dynamically rendered from portfolio.json) -->
+      <section class="services">
+        <div class="service-card" id="service-card-1">
+          <div class="service-card-inner">
+            <div class="service-card-content">
+              <h1>Creative Frontend & Motion</h1>
             </div>
-            <div class="service-card" id="service-card-2">
-              <div class="service-card-inner">
-                <div class="service-card-content">
-                  <h1>Backend Development</h1>
-                </div>
-                <div class="service-card-img">
-                  <img
-                    src="/images/services/service-2.jpg"
-                    alt="Backend Development"
-                  />
-                </div>
-              </div>
+            <div class="service-card-img">
+              <img
+                src="/images/services/service-1.jpg"
+                alt="Creative Frontend & Motion"
+              />
             </div>
-            <div class="service-card" id="service-card-3">
-              <div class="service-card-inner">
-                <div class="service-card-content">
-                  <h1>UI/UX Design</h1>
-                </div>
-                <div class="service-card-img">
-                  <img
-                    src="/images/services/service-3.jpg"
-                    alt="UI/UX Design"
-                  />
-                </div>
-              </div>
+          </div>
+        </div>
+        <div class="service-card" id="service-card-2">
+          <div class="service-card-inner">
+            <div class="service-card-content">
+              <h1>AI Automation & Web Tools</h1>
             </div>
-            <div class="service-card" id="service-card-4">
-              <div class="service-card-inner">
-                <div class="service-card-content">
-                  <h1>Web Applications</h1>
-                </div>
-                <div class="service-card-img">
-                  <img
-                    src="/images/services/service-4.jpg"
-                    alt="Web Applications"
-                  />
-                </div>
-              </div>
+            <div class="service-card-img">
+              <img
+                src="/images/services/service-2.jpg?v=2"
+                alt="AI Automation & Web Tools"
+              />
             </div>
-          </section>
+          </div>
+        </div>
+        <div class="service-card" id="service-card-3">
+          <div class="service-card-inner">
+            <div class="service-card-content">
+              <h1>High-Performance Web Apps</h1>
+            </div>
+            <div class="service-card-img">
+              <img
+                src="/images/services/service-3.jpg"
+                alt="High-Performance Web Apps"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="service-card" id="service-card-4">
+          <div class="service-card-inner">
+            <div class="service-card-content">
+              <h1>UI/UX & Design Systems</h1>
+            </div>
+            <div class="service-card-img">
+              <img
+                src="/images/services/service-4.jpg"
+                alt="UI/UX & Design Systems"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
-
-
-        <!-- home - contact cta -->
+      <!-- home - contact cta -->
       <section class="contact-cta">
         <div class="contact-button">
           <a href="/contact"></a>
@@ -318,76 +231,70 @@
         </div>
       </section>
 
-<!-- home - footer -->
-<footer>
-    <div class="footer-container">
-      <div class="footer-symbols footer-symbols-1">
-        <img src="/images/global/s6.png" alt="" />
-        <img src="/images/global/s6.png" alt="" />
-      </div>
-      <div class="footer-symbols footer-symbols-2">
-        <img src="/images/global/s6.png" alt="" />
-        <img src="/images/global/s6.png" alt="" />
-      </div>
-      <div class="footer-header">
-        <h1>Prashant Koirala</h1>
-      </div>
-      <div class="footer-row">
-        <div class="footer-col">
-          <p>Explore</p>
-          <p><a href="/home">Home</a></p>
-          <p><a href="/contact">Contact</a></p>
+      <!-- home - footer -->
+      <footer>
+        <div class="footer-container">
+          <div class="footer-symbols footer-symbols-1">
+            <img src="/images/global/s6.png" alt="" />
+            <img src="/images/global/s6.png" alt="" />
+          </div>
+          <div class="footer-symbols footer-symbols-2">
+            <img src="/images/global/s6.png" alt="" />
+            <img src="/images/global/s6.png" alt="" />
+          </div>
+          <div class="footer-header">
+            <h1>Sourabh Chouhan</h1>
+          </div>
+          <div class="footer-row">
+            <div class="footer-col">
+              <p>Explore</p>
+              <p><a href="/">Home</a></p>
+              <p><a href="/contact">Contact</a></p>
+            </div>
+            <div class="footer-col">
+              <p>Focus Areas</p>
+              <p><a href="https://github.com/NoobSourabh" target="_blank" rel="noopener noreferrer">Frontend & Motion</a></p>
+              <p><a href="https://github.com/NoobSourabh" target="_blank" rel="noopener noreferrer">AI Tools & Extensions</a></p>
+              <p><a href="https://github.com/NoobSourabh" target="_blank" rel="noopener noreferrer">Generative AI</a></p>
+            </div>
+            <div class="footer-col">
+              <p>Connect</p>
+              <p>
+                <a href="https://www.linkedin.com/in/sourabh-chouhan31/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              </p>
+              <p>
+                <a href="https://github.com/NoobSourabh" target="_blank" rel="noopener noreferrer">Github</a>
+              </p>
+              <p>
+                <a href="https://leetcode.com/u/SourabhNoob/" target="_blank" rel="noopener noreferrer">LeetCode</a>
+              </p>
+              <p>
+                <a href="mailto:inbox.sourabhc@gmail.com" target="_blank">Email</a>
+              </p>
+            </div>
+            <div class="footer-col">
+              <p>Extras</p>
+              <p>
+                <a href="https://github.com/NoobSourabh" target="_blank" rel="noopener noreferrer">Open Source</a>
+              </p>
+              <p>
+                <a href="https://drive.google.com/file/d/1lhunYlVGdRqDiOsPf6xECVWj0x6tDbzR/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</a>
+              </p>
+              <p>
+                <a href="https://transitops-outliers-site.onrender.com/" target="_blank" rel="noopener noreferrer">Hackathon Winner</a>
+              </p>
+            </div>
+          </div>
+          <div class="copyright-info">
+            <p class="mn">© - Sourabh Chouhan // 2026</p>
+            <p class="mn"></p>
+          </div>
+          <div class="explosion-container"></div>
         </div>
-        <div class="footer-col">
-          <p>Creative Hub
-          </p>
-          <p><a href="https://www.prashantkoirala.info.np" target="_blank">View Portfolio</a></p>
-          <p><a href="https://prashantkoirala.hashnode.dev/" target="_blank">View Blog</a></p>
-        </div>
-        <div class="footer-col">
-          <p>Connect</p>
-          <p>
-            <a href="https://www.linkedin.com/in/prashantkoirala/" target="_blank">LinkedIn</a>
-          </p>
-          <p>
-            <a href="https://github.com/prashantkoirala465" target="_blank"
-              >Github</a
-            >
-          </p>
-          <p>
-            <a href="https://x.com/arkynox_" target="_blank"
-              >Twitter</a
-            >
-          </p>
-        </div>
-        <div class="footer-col">
-          <p>Extras</p>
-          <p>
-            <a href="https://www.awwwards.com/winner-list/" target="_blank"
-              >Design Archive</a>
-          </p>
-          
-          <p><a href="https://www.pillarstack.com/" target="_blank"
-            > Basic References</a></p>
-        
-            <p><a href="https://blog.olivierlarose.com/" target="_blank"
-                >Animation References</a></p>
-    
-
-        </div>
-        
-      </div>
-      <div class="copyright-info">
-        <p class="mn">© - Prashant Koirala // 2025</p>
-        <p class="mn"></p>
-      </div>
-      <div class="explosion-container"></div>
+      </footer>
     </div>
-  </footer>
 
-
-
-    </div>
+    <script type="module" src="/js/portfolio-loader.js"></script>
     <script type="module" src="/js/transition.js"></script>
     <script type="module" src="/js/lenis-scroll.js"></script>
     <script type="module" src="/js/menu.js"></script>
@@ -396,7 +303,5 @@
     <script type="module" src="/js/services.js"></script>
     <script type="module" src="/js/footer.js"></script>
     <script type="module" src="/js/about.js"></script>
-    
-    
   </body>
 </html>

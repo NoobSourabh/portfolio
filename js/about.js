@@ -54,8 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
       // Portrait animation (if element exists)
       const portraitElement = document.querySelector(".about-hero-portrait");
       if (portraitElement) {
+        gsap.set(portraitElement, { clearProps: "top,left", rotation: 10, y: 0 });
         const portraitAnimation = gsap.to(".about-hero-portrait", {
-          y: -200, // Move up by 200px
+          y: -140, // Move up by 140px on scroll
           rotation: -25, // Rotate -25 degrees
           scrollTrigger: {
             trigger: ".about-hero", // Trigger element

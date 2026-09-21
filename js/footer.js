@@ -1,4 +1,5 @@
 // footer.js
+import { portfolioData } from "./portfolio-data.js";
 
 // Wait for DOM to fully load before executing
 document.addEventListener("DOMContentLoaded", () => {
@@ -15,19 +16,37 @@ document.addEventListener("DOMContentLoaded", () => {
     const config = {
       gravity: 0.25, // Downward force applied to particles
       friction: 0.99, // Slows down particle movement and rotation
-      imageSize: 150, // Size of particle images (px)
+      imageSize: 44, // Size of particle SVG icons (px)
       horizontalForce: 20, // Max horizontal velocity range
       verticalForce: 15, // Initial upward velocity
       rotationSpeed: 10, // Max rotation speed (degrees)
       resetDelay: 500, // Delay before checking footer position (ms)
     };
   
-    // Define particle images
-    const imageParticleCount = 10; // Number of particle images
-    const imagePaths = Array.from(
-      { length: imageParticleCount },
-      (_, i) => `/images/work-items/work-item-${i + 1}.jpg` // Paths to images (work-item-1.jpg to work-item-10.jpg)
-    );
+    // Define particle images (16 tools & tech SVG icons)
+    const fallbackSvgPaths = [
+      "/images/tools/cursor.svg",
+      "/images/tools/antigravity.svg",
+      "/images/tools/windsurf.svg",
+      "/images/tools/react.svg",
+      "/images/tools/nextjs.svg",
+      "/images/tools/typescript.svg",
+      "/images/tools/javascript.svg",
+      "/images/tools/tailwindcss.svg",
+      "/images/tools/redux.svg",
+      "/images/tools/framer-motion.svg",
+      "/images/tools/gsap.svg",
+      "/images/tools/html5.svg",
+      "/images/tools/css3.svg",
+      "/images/tools/git-github.svg",
+      "/images/tools/vscode.svg",
+      "/images/tools/zustand.svg",
+    ];
+
+    const imagePaths =
+      portfolioData.tools && portfolioData.tools.length > 0
+        ? portfolioData.tools.map((t) => t.icon || `/images/tools/${t.file}`)
+        : fallbackSvgPaths;
   
     // Preload images to avoid delays
     imagePaths.forEach((path) => {
@@ -41,8 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
       imagePaths.forEach((path) => {
         const particle = document.createElement("img");
         particle.src = path;
+        particle.alt = "Tool Icon";
         particle.classList.add("explosion-particle-img"); // Add class for styling
         particle.style.width = `${config.imageSize}px`; // Set image size
+        particle.style.height = `${config.imageSize}px`;
         explosionContainer.appendChild(particle); // Add to container
       });
     };

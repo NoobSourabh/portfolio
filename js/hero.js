@@ -15,18 +15,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Select hero image element
   const heroImg = document.querySelector(".hero-img img");
-  let currentImageIndex = 1; // Tracks current image in sequence
-  const totalImages = 10; // Total number of images for cycling
+  if (!heroImg) return;
+
+  const heroImages = [
+    "/images/hero/hero-1.png",
+    "/images/hero/hero-2.png",
+    "/images/hero/hero-3.png",
+    "/images/hero/hero-4.png",
+  ];
+
+  // Preload images to avoid flashing or blank frames during rapid cycling
+  heroImages.forEach((src) => {
+    const img = new Image();
+    img.src = src;
+  });
+
+  let currentImageIndex = 0;
   let scrollTriggerInstance = null; // Stores ScrollTrigger instance for cleanup
 
-  // Cycle through images every 250ms
+  // Cycle through images every 280ms
   setInterval(() => {
-    // Increment image index, reset to 1 if it exceeds totalImages
-    currentImageIndex =
-      currentImageIndex >= totalImages ? 1 : currentImageIndex + 1;
-    // Update hero image source
-    heroImg.src = `/images/work-items/work-item-${currentImageIndex}.jpg`;
-  }, 250);
+    currentImageIndex = (currentImageIndex + 1) % heroImages.length;
+    heroImg.src = heroImages[currentImageIndex];
+  }, 280);
 
   // Initialize animations with ScrollTrigger
   const initAnimations = () => {

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact | Prashant Koirala | Portfolio</title>
+    <title>Contact | Sourabh Chouhan | Portfolio</title>
     <link rel="icon" href="/images/global/site-icon.png" />
     <link rel="stylesheet" href="/css/transition.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
@@ -23,27 +23,30 @@
       <nav>
         <div class="logo">
           <div class="logo-container">
-            <p class="mn"><a href="/">P ✦ K</a></p>
+            <p class="mn"><a href="/">S ✦ C</a></p>
           </div>
         </div>
       </nav>
-      <section class="contact trail-container">
-        <div class="floating-elements"></div>
+      <section class="contact">
         <div class="contact-left">
           <div class="contact-card-header-main">
             <h1>Let's Connect</h1>
             <p>
-              Got a project idea? Need a stunning website or a robust app? Or just want to geek out over code and design? I'm all in. Drop me a line, and let's create something extraordinary together.
+              Got a project idea, need high-performance frontend engineering, interactive web applications, or just want to geek out over creative code? Let's build something extraordinary together.
             </p>
           </div>
           <div class="contact-info">
             <div class="contact-info-item">
               <p class="label">Project Inquiries</p>
-              <p><a href="mailto:prashantkoirala465@gmail.com" target="_blank">prashantkoirala465@gmail.com</a></p>
+              <p><a href="mailto:inbox.sourabhc@gmail.com" target="_blank">inbox.sourabhc@gmail.com</a></p>
             </div>
             <div class="contact-info-item">
-              <p class="label">Quick Chat</p>
-              <p><a href="https://x.com/arkynox_" target="_blank">@arkynox_</a></p>
+              <p class="label">Quick Chat / GitHub</p>
+              <p><a href="https://github.com/NoobSourabh" target="_blank" rel="noopener noreferrer">@NoobSourabh</a></p>
+            </div>
+            <div class="contact-info-item">
+              <p class="label">Location</p>
+              <p>Indore, India</p>
             </div>
           </div>
         </div>
@@ -76,30 +79,66 @@
             <div class="form-group full-width">
               <select id="projectType" name="projectType" required>
                 <option value="">Select project type</option>
-                <option value="website">Website Development</option>
-                <option value="webapp">Web Application</option>
-                <option value="mobileapp">Mobile Application</option>
-                <option value="ecommerce">E-commerce Platform</option>
-                <option value="redesign">Website Redesign</option>
-                <option value="consultation">Consultation</option>
+                <option value="frontend">Creative Frontend & Animations</option>
+                <option value="webapp">Full-Stack Web Application</option>
+                <option value="webtools">AI Automation & Web Tools</option>
+                <option value="extension">AI Automation / Chrome Extension</option>
+                <option value="design">UI/UX & Design Systems</option>
+                <option value="consultation">Technical Consultation</option>
                 <option value="other">Other</option>
               </select>
               <label for="projectType">Project Type</label>
             </div>
             <div class="form-group full-width">
-              <textarea id="message" name="message" placeholder="Tell me about your project, goals, timeline, and budget..." required></textarea>
+              <textarea id="message" name="message" placeholder="Tell me about your project, goals, timeline, and technical needs..." required></textarea>
               <label for="message">Project Details</label>
+            </div>
+            <div class="form-group full-width email-client-group">
+              <label class="client-label">Send Message Via</label>
+              <div class="email-client-options">
+                <label class="client-option active">
+                  <input type="radio" name="emailClient" value="gmail" checked />
+                  <span class="option-content">
+                    <span class="option-header">
+                      <span class="option-icon">✦</span>
+                      <span class="option-title">Gmail Web</span>
+                    </span>
+                    <span class="option-badge">Recommended</span>
+                  </span>
+                </label>
+                <label class="client-option">
+                  <input type="radio" name="emailClient" value="default" />
+                  <span class="option-content">
+                    <span class="option-header">
+                      <span class="option-icon">✉</span>
+                      <span class="option-title">Mail App</span>
+                    </span>
+                    <span class="option-desc">Apple / Windows Mail</span>
+                  </span>
+                </label>
+                <label class="client-option">
+                  <input type="radio" name="emailClient" value="outlook" />
+                  <span class="option-content">
+                    <span class="option-header">
+                      <span class="option-icon">⚡</span>
+                      <span class="option-title">Outlook Web</span>
+                    </span>
+                    <span class="option-desc">Live / Hotmail</span>
+                  </span>
+                </label>
+              </div>
             </div>
             <button type="submit" class="submit-btn">
               Send Message
             </button>
             <div class="success-message" id="successMessage">
-              <p>Thanks! Your message has been sent. I'll get back to you within 24 hours.</p>
+              <p>Thanks! Your message has been prepared.</p>
             </div>
           </form>
         </div>
       </section>
     </div>
+    <script type="module" src="/js/portfolio-loader.js"></script>
     <script type="module" src="/js/transition.js"></script>
     <script type="module" src="/js/contact.js"></script>
   </body>

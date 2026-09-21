@@ -3,12 +3,38 @@
 // Import GSAP and ScrollTrigger plugin
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { portfolioData } from "./portfolio-data.js";
 
 // Wait for DOM to fully load before executing
 document.addEventListener("DOMContentLoaded", () => {
   // Check if current page is the homepage; exit if not
   const isHomePage = document.querySelector(".page.home-page");
   if (!isHomePage) return;
+
+  // Dynamically render service cards from portfolioData.services
+  const servicesContainer = document.querySelector("section.services");
+  if (servicesContainer && portfolioData.services) {
+    servicesContainer.innerHTML = "";
+    portfolioData.services.forEach((service, index) => {
+      const card = document.createElement("div");
+      card.className = "service-card";
+      card.id = `service-card-${index + 1}`;
+      card.innerHTML = `
+        <div class="service-card-inner">
+          <div class="service-card-content">
+            <h1>${service.title}</h1>
+          </div>
+          <div class="service-card-img">
+            <img
+              src="${service.image}"
+              alt="${service.title}"
+            />
+          </div>
+        </div>
+      `;
+      servicesContainer.appendChild(card);
+    });
+  }
 
   // Register ScrollTrigger plugin with GSAP
   gsap.registerPlugin(ScrollTrigger);
@@ -34,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Get all service card elements
     const services = gsap.utils.toArray(".service-card");
+    if (!services.length) return;
 
     // Create main ScrollTrigger to track entire service section
     const mainTrigger = ScrollTrigger.create({

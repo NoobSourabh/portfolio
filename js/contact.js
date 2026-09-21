@@ -1,211 +1,228 @@
 // contact.js
 
+import { portfolioData } from "./portfolio-data.js";
+
 // Wait for DOM to fully load before executing
 document.addEventListener("DOMContentLoaded", () => {
   // Check if current page is the contact page; exit if not
   const isContactPage = document.querySelector(".page.contact-page");
   if (!isContactPage) return;
 
-  // Select trail container for mouse-driven image trail
-  const container = document.querySelector(".trail-container");
-  let isDesktop = window.innerWidth > 1000; // Check if screen is desktop (> 1000px)
-  let animationId = null; // Store animation frame ID
-  let mouseMoveListener = null; // Store mousemove event listener
+  // Hydrate brand & contact details dynamically from portfolioData
+  const logoLink = document.querySelector(".logo a");
+  if (logoLink) logoLink.textContent = portfolioData.personal.initials;
 
-  // Configuration for image trail behavior
-  const config = {
-    imageCount: 8, // Number of images in trail
-    imageLifespan: 800, // Time before image removal (ms)
-    removalDelay: 60, // Delay between removals (ms)
-    mouseThreshold: 80, // Minimum mouse movement distance to create image
-    inDuration: 600, // Animation duration for image appearance (ms)
-    outDuration: 800, // Animation duration for image removal (ms)
-    inEasing: "cubic-bezier(.07,.5,.5,1)", // Easing for image appearance
-    outEasing: "cubic-bezier(.87, 0, .13, 1)", // Easing for image removal
-  };
+  const headerMain = document.querySelector(".contact-card-header-main");
+  if (headerMain) {
+    headerMain.innerHTML = `
+      <h1>${portfolioData.contact.headline}</h1>
+      <p>${portfolioData.contact.description}</p>
+    `;
+  }
 
-  // Define image paths for trail
-  const images = Array.from(
-    { length: config.imageCount },
-    (_, i) => `/images/work-items/work-item-${i + 1}.jpg` // Paths to images (work-item-1.jpg to work-item-8.jpg)
-  );
-  const trail = []; // Store active trail images
+  const contactInfo = document.querySelector(".contact-info");
+  if (contactInfo) {
+    contactInfo.innerHTML = `
+      <div class="contact-info-item">
+        <p class="label">Project Inquiries</p>
+        <p><a href="mailto:${portfolioData.contact.email}" target="_blank">${portfolioData.contact.email}</a></p>
+      </div>
+      <div class="contact-info-item">
+        <p class="label">Quick Chat / GitHub</p>
+        <p><a href="${portfolioData.contact.quickChatUrl}" target="_blank" rel="noopener noreferrer">@${portfolioData.contact.quickChatHandle}</a></p>
+      </div>
+      <div class="contact-info-item">
+        <p class="label">Location</p>
+        <p>${portfolioData.contact.location}</p>
+      </div>
+    `;
+  }
 
-  // Track mouse position and state
-  let mouseX = 0,
-    mouseY = 0,
-    lastMouseX = 0,
-    lastMouseY = 0;
-  let isCursorInContainer = false; // Check if cursor is in trail container
-  let lastRemovalTime = 0; // Track last image removal time
-
-  // Create floating elements for background animation
-  const createFloatingElements = () => {
-    const floatingContainer = document.querySelector(".floating-elements");
-    if (!floatingContainer) return; // Exit if container not found
-    for (let i = 0; i < 12; i++) {
-      const element = document.createElement("div");
-      element.className = "floating-element"; // Add class for styling
-      element.style.left = Math.random() * 100 + "%"; // Random horizontal position
-      element.style.animationDelay = Math.random() * 8 + "s"; // Random delay (0-8s)
-      element.style.animationDuration = 8 + Math.random() * 4 + "s"; // Duration (8-12s)
-      floatingContainer.appendChild(element); // Add to container
-    }
-  };
-
-  // Check if mouse is within trail container
-  const isInContainer = (x, y) => {
-    const rect = container.getBoundingClientRect();
-    return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
-  };
-
-  // Check if mouse has moved enough to create a new image
-  const hasMovedEnough = () => {
-    const distance = Math.sqrt(
-      Math.pow(mouseX - lastMouseX, 2) + Math.pow(mouseY - lastMouseY, 2)
-    );
-    return distance > config.mouseThreshold; // Compare with threshold
-  };
-
-  // Create a new trail image at mouse position
-  const createImage = () => {
-    const img = document.createElement("img");
-    img.classList.add("trail-img"); // Add class for styling
-    const randomIndex = Math.floor(Math.random() * images.length); // Random image
-    const rotation = (Math.random() - 0.5) * 40; // Random rotation (-20 to 20 deg)
-    img.src = images[randomIndex]; // Set image source
-    const rect = container.getBoundingClientRect();
-    const relativeX = mouseX - rect.left; // Mouse X relative to container
-    const relativeY = mouseY - rect.top; // Mouse Y relative to container
-    img.style.left = `${relativeX}px`; // Position at mouse X
-    img.style.top = `${relativeY}px`; // Position at mouse Y
-    img.style.transform = `translate(-50%, -50%) rotate(${rotation}deg) scale(0)`; // Start scaled down
-    img.style.transition = `transform ${config.inDuration}ms ${config.inEasing}`; // Animation for appearance
-    container.appendChild(img); // Add to container
-    // Animate to full scale
-    setTimeout(() => {
-      img.style.transform = `translate(-50%, -50%) rotate(${rotation}deg) scale(1)`;
-    }, 10);
-    // Add to trail array
-    trail.push({
-      element: img,
-      rotation: rotation,
-      removeTime: Date.now() + config.imageLifespan,
+  // Interactive radio option styling for email client selection
+  const setupEmailClientOptions = () => {
+    const clientOptions = document.querySelectorAll(".client-option");
+    clientOptions.forEach((option) => {
+      option.addEventListener("click", () => {
+        clientOptions.forEach((opt) => opt.classList.remove("active"));
+        option.classList.add("active");
+        const radio = option.querySelector('input[type="radio"]');
+        if (radio) radio.checked = true;
+      });
     });
   };
 
-  // Remove oldest image if lifespan exceeded
-  const removeOldImages = () => {
-    const now = Date.now();
-    if (now - lastRemovalTime < config.removalDelay || trail.length === 0) return; // Skip if too soon or no images
-    const oldestImage = trail[0];
-    if (now >= oldestImage.removeTime) {
-      const imgToRemove = trail.shift(); // Remove oldest image
-      imgToRemove.element.style.transition = `transform ${config.outDuration}ms ${config.outEasing}`; // Animation for removal
-      imgToRemove.element.style.transform = `translate(-50%, -50%) rotate(${imgToRemove.rotation}deg) scale(0)`; // Scale down
-      lastRemovalTime = now; // Update last removal time
-      // Remove from DOM after animation
-      setTimeout(() => {
-        if (imgToRemove.element.parentNode) {
-          imgToRemove.element.parentNode.removeChild(imgToRemove.element);
-        }
-      }, config.outDuration);
-    }
-  };
+  setupEmailClientOptions();
 
-  // Start mouse trail animation
-  const startAnimation = () => {
-    if (!isDesktop) return; // Exit if not desktop
-    mouseMoveListener = (e) => {
-      mouseX = e.clientX; // Update mouse X
-      mouseY = e.clientY; // Update mouse Y
-      isCursorInContainer = isInContainer(mouseX, mouseY); // Check if in container
-      if (isCursorInContainer && hasMovedEnough()) {
-        lastMouseX = mouseX; // Update last mouse position
-        lastMouseY = mouseY;
-        createImage(); // Create new image
-      }
-    };
-    document.addEventListener("mousemove", mouseMoveListener); // Add mousemove listener
-    const animate = () => {
-      removeOldImages(); // Remove old images
-      animationId = requestAnimationFrame(animate); // Continue animation
-    };
-    animate(); // Start animation loop
-  };
-
-  // Stop mouse trail animation
-  const stopAnimation = () => {
-    if (mouseMoveListener) {
-      document.removeEventListener("mousemove", mouseMoveListener); // Remove listener
-      mouseMoveListener = null;
-    }
-    if (animationId) {
-      cancelAnimationFrame(animationId); // Stop animation loop
-      animationId = null;
-    }
-    trail.forEach((item) => {
-      if (item.element.parentNode) {
-        item.element.parentNode.removeChild(item.element); // Clear all images
-      }
-    });
-    trail.length = 0; // Reset trail array
-  };
-
-  // Handle window resize to toggle animation
-  const handleResize = () => {
-    const wasDesktop = isDesktop;
-    isDesktop = window.innerWidth > 1000; // Update desktop state
-    if (isDesktop && !wasDesktop) {
-      startAnimation(); // Start animation on desktop
-    } else if (!wasDesktop && isDesktop) {
-      stopAnimation(); // Stop animation on mobile
-    }
-  };
-
-  // Handle form submission with feedback
+  // Handle form submission and redirect to email client automatically
   const handleFormSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
     const form = e.target;
-    const submitBtn = form.querySelector(".submit-btn"); // Submit button
-    const successMessage = document.getElementById("successMessage"); // Success message element
-    submitBtn.style.transform = "translateY(-1px)"; // Slight button press effect
-    submitBtn.textContent = "Sending..."; // Update button text
-    submitBtn.disabled = true; // Disable button
+    const submitBtn = form.querySelector(".submit-btn");
+    const successMessage = document.getElementById("successMessage");
+
+    const firstName = form.querySelector("#firstName")?.value.trim() || "";
+    const lastName = form.querySelector("#lastName")?.value.trim() || "";
+    const fullName = `${firstName} ${lastName}`.trim() || "Prospective Client";
+    const email = form.querySelector("#email")?.value.trim() || "";
+    const phone = form.querySelector("#phone")?.value.trim() || "Not provided";
+    const projectTypeSelect = form.querySelector("#projectType");
+    const projectType =
+      projectTypeSelect && projectTypeSelect.selectedIndex >= 0
+        ? projectTypeSelect.options[projectTypeSelect.selectedIndex].text
+        : "General Inquiry";
+    const message = form.querySelector("#message")?.value.trim() || "";
+
+    const selectedClient =
+      form.querySelector('input[name="emailClient"]:checked')?.value || "gmail";
+
+    const recipientEmail = portfolioData.contact?.email || "inbox.sourabhc@gmail.com";
+    const subject = `Project Inquiry: ${projectType} - ${fullName}`;
+
+    const bodyLines = [
+      `Hello Sourabh,`,
+      ``,
+      `I would like to discuss a new project with you. Here are the details:`,
+      ``,
+      `--------------------------------------------------`,
+      `CLIENT / CONTACT DETAILS`,
+      `--------------------------------------------------`,
+      `• Name:         ${fullName}`,
+      `• Email:        ${email}`,
+      `• Phone:        ${phone}`,
+      ``,
+      `--------------------------------------------------`,
+      `PROJECT OVERVIEW`,
+      `--------------------------------------------------`,
+      `• Project Type: ${projectType}`,
+      ``,
+      `• Project Details & Scope:`,
+      `${message}`,
+      ``,
+      `--------------------------------------------------`,
+      `Sent via Sourabh Chouhan Portfolio Contact Form`,
+    ];
+
+    const emailBody = bodyLines.join("\r\n");
+
+    // Construct destination URLs
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipientEmail)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+    const mailtoUrl = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+    const outlookUrl = `https://outlook.live.com/mail/0/deeplink/compose?to=${encodeURIComponent(recipientEmail)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+
+    let targetUrl = gmailUrl;
+    let clientName = "Gmail Web";
+
+    if (selectedClient === "default") {
+      targetUrl = mailtoUrl;
+      clientName = "Default Mail App";
+    } else if (selectedClient === "outlook") {
+      targetUrl = outlookUrl;
+      clientName = "Outlook Web";
+    }
+
+    // Update button visual state immediately
+    submitBtn.style.transform = "translateY(-1px)";
+    submitBtn.textContent = `Redirecting to ${clientName}...`;
+    submitBtn.disabled = true;
+
+    // Trigger guaranteed automatic redirection
+    // Directly setting window.location.href bypasses browser popup-blockers completely
     setTimeout(() => {
-      form.reset(); // Reset form
-      submitBtn.textContent = "Send Message"; // Restore button text
-      submitBtn.disabled = false; // Enable button
-      submitBtn.style.transform = ""; // Reset button style
-      successMessage.classList.add("show"); // Show success message
-      setTimeout(() => {
-        successMessage.classList.remove("show"); // Hide after 5s
-      }, 5000);
-    }, 1500); // Simulate form submission delay
+      window.location.href = targetUrl;
+    }, 150);
+
+    // Provide friendly confirmation, direct retry links, and 1-click clipboard copy
+    if (successMessage) {
+      successMessage.innerHTML = `
+        <p style="font-size: 1rem; margin-bottom: 0.35em;">
+          ✓ Opening <strong>${clientName}</strong> with your pre-filled inquiry!
+        </p>
+        <p style="font-size: 0.8rem; opacity: 0.85;">
+          Didn't redirect automatically? Select your preferred option below:
+        </p>
+        <div class="fallback-actions">
+          <a href="${gmailUrl}" target="_blank" rel="noopener noreferrer" class="fallback-btn ${selectedClient === 'gmail' ? 'primary' : ''}">
+            ✦ Open in Gmail
+          </a>
+          <a href="${mailtoUrl}" class="fallback-btn ${selectedClient === 'default' ? 'primary' : ''}">
+            ✉ Open Mail App
+          </a>
+          <a href="${outlookUrl}" target="_blank" rel="noopener noreferrer" class="fallback-btn ${selectedClient === 'outlook' ? 'primary' : ''}">
+            ⚡ Open Outlook
+          </a>
+          <button type="button" class="fallback-btn" id="copyDetailsBtn">
+            📋 Copy Message
+          </button>
+        </div>
+      `;
+      successMessage.classList.add("show");
+
+      // Attach clipboard copy handler
+      const copyBtn = successMessage.querySelector("#copyDetailsBtn");
+      if (copyBtn) {
+        copyBtn.addEventListener("click", () => {
+          const fullText = `To: ${recipientEmail}\nSubject: ${subject}\n\n${emailBody}`;
+          const onSuccess = () => {
+            copyBtn.textContent = "✓ Copied Details!";
+            setTimeout(() => {
+              copyBtn.textContent = "📋 Copy Message";
+            }, 2500);
+          };
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(fullText).then(onSuccess).catch(() => {
+              fallbackCopy(fullText, onSuccess);
+            });
+          } else {
+            fallbackCopy(fullText, onSuccess);
+          }
+        });
+      }
+    }
+
+    // Allow re-submission without losing typed data
+    setTimeout(() => {
+      submitBtn.textContent = "Send Message";
+      submitBtn.disabled = false;
+      submitBtn.style.transform = "";
+    }, 2500);
+  };
+
+  // Helper for clipboard copy fallback
+  const fallbackCopy = (text, callback) => {
+    const tempInput = document.createElement("textarea");
+    tempInput.value = text;
+    tempInput.style.position = "fixed";
+    tempInput.style.opacity = "0";
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    try {
+      document.execCommand("copy");
+      if (callback) callback();
+    } catch (e) {
+      console.error("Clipboard copy failed:", e);
+    }
+    document.body.removeChild(tempInput);
   };
 
   // Enhance form inputs with focus/blur animations
   const enhanceFormInputs = () => {
-    const inputs = document.querySelectorAll(".form-group input, .form-group textarea, .form-group select");
+    const inputs = document.querySelectorAll(
+      ".form-group input, .form-group textarea, .form-group select"
+    );
     inputs.forEach((input) => {
       input.addEventListener("focus", () => {
-        input.parentElement.style.transform = "translateY(-2px)"; // Lift parent on focus
+        input.parentElement.style.transform = "translateY(-2px)";
       });
       input.addEventListener("blur", () => {
-        input.parentElement.style.transform = ""; // Reset on blur
+        input.parentElement.style.transform = "";
       });
     });
   };
 
-  // Add event listeners and initialize
-  window.addEventListener("resize", handleResize); // Handle resize
-  createFloatingElements(); // Create background floating elements
-  enhanceFormInputs(); // Enhance form inputs
+  enhanceFormInputs();
   const contactForm = document.getElementById("contactForm");
   if (contactForm) {
-    contactForm.addEventListener("submit", handleFormSubmit); // Add form submit handler
-  }
-  if (isDesktop) {
-    startAnimation(); // Start animation on desktop
+    contactForm.addEventListener("submit", handleFormSubmit);
   }
 });

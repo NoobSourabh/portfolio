@@ -11,18 +11,6 @@
   overflow: hidden;
 }
 
-.contact .trail-img {
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 0.75em;
-  transform-origin: center;
-  pointer-events: none;
-  will-change: transform;
-  border: 2px solid var(--fg);
-  box-shadow: 4px 4px 0px var(--fg);
-}
 
 .contact-left {
   display: flex;
@@ -287,11 +275,112 @@
   box-shadow: 2px 2px 0px var(--fg);
 }
 
+.email-client-group {
+  margin-top: 0.25em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.client-label {
+  text-transform: uppercase;
+  font-family: "supply-mono";
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.125;
+  color: var(--fg);
+}
+
+.email-client-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75em;
+}
+
+.client-option {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg);
+  border: 2px solid var(--fg);
+  border-radius: 0.75em;
+  padding: 0.65em 0.8em;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 2px 2px 0px var(--fg);
+  user-select: none;
+}
+
+.client-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.client-option:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px var(--fg);
+}
+
+.client-option.active {
+  background-color: var(--accent2);
+  box-shadow: 3px 3px 0px var(--fg);
+  transform: translateY(-2px);
+}
+
+.option-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+
+.option-header {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+}
+
+.option-icon {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.option-title {
+  font-family: "formula-narrow";
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+
+.option-badge {
+  display: inline-block;
+  font-family: "supply-mono";
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  background-color: var(--fg);
+  color: var(--bg);
+  padding: 0.15em 0.4em;
+  border-radius: 0.25em;
+  width: fit-content;
+  font-weight: 600;
+  margin-top: 0.15em;
+}
+
+.option-desc {
+  font-family: "supply-mono";
+  font-size: 0.625rem;
+  opacity: 0.75;
+  color: var(--fg);
+  margin-top: 0.15em;
+}
+
 .success-message {
   background-color: var(--accent3);
   border: 2px solid var(--fg);
   color: var(--fg);
-  padding: 0.75em 1.25em;
+  padding: 1em 1.25em;
   border-radius: 0.75em;
   text-align: center;
   font-family: "formula-narrow";
@@ -308,40 +397,49 @@
   transform: translateY(0);
 }
 
-.floating-elements {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
+.fallback-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  justify-content: center;
+  margin-top: 0.75em;
 }
 
-.floating-element {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  background-color: var(--accent1);
-  border-radius: 50%;
-  animation: float 12s infinite linear;
-  opacity: 0.4;
+.fallback-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.5em 0.85em;
+  font-family: "supply-mono";
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-color: var(--bg);
+  color: var(--fg);
+  border: 1.5px solid var(--fg);
+  border-radius: 0.5em;
+  box-shadow: 2px 2px 0px var(--fg);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
 
-.floating-element:nth-child(2n) {
-  background-color: var(--accent3);
-}
-
-.floating-element:nth-child(3n) {
+.fallback-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 3px 3px 0px var(--fg);
   background-color: var(--accent2);
 }
 
-@keyframes float {
-  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-  10% { opacity: 0.4; }
-  90% { opacity: 0.4; }
-  100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+.fallback-btn.primary {
+  background-color: var(--fg);
+  color: var(--bg);
 }
+
+.fallback-btn.primary:hover {
+  background-color: var(--accent1);
+  color: var(--fg);
+}
+
 
 @keyframes gradientMove {
   0% { background-position: 0% 50%; }
@@ -399,5 +497,10 @@
   
   .form-header h2 {
     font-size: clamp(1.25rem, 6vw, 1.5rem);
+  }
+
+  .email-client-options {
+    grid-template-columns: 1fr;
+    gap: 0.5em;
   }
 }

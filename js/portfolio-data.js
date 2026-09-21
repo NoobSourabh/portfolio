@@ -20,7 +20,7 @@ export const portfolioData = {
     github: "https://github.com/NoobSourabh",
     linkedin: "https://www.linkedin.com/in/sourabh-chouhan31/",
     leetcode: "https://leetcode.com/u/SourabhNoob/",
-    email: "inbox.sourabhc@gmail.com"
+    email: "dev.sourabhc@gmail.com"
   },
   experience: [
     {
@@ -161,7 +161,7 @@ export const portfolioData = {
   contact: {
     headline: "Let's Connect",
     description: "Got a project idea, need high-performance frontend engineering, interactive web applications, or just want to geek out over creative code? Let's build something extraordinary together.",
-    email: "inbox.sourabhc@gmail.com",
+    email: "dev.sourabhc@gmail.com",
     quickChatHandle: "NoobSourabh",
     quickChatUrl: "https://github.com/NoobSourabh",
     location: "Indore, India"

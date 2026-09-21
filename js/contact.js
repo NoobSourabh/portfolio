@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedClient =
       form.querySelector('input[name="emailClient"]:checked')?.value || "gmail";
 
-    const recipientEmail = portfolioData.contact?.email || "inbox.sourabhc@gmail.com";
+    const recipientEmail = portfolioData.contact?.email || "dev.sourabhc@gmail.com";
     const subject = `Project Inquiry: ${projectType} - ${fullName}`;
 
     const bodyLines = [

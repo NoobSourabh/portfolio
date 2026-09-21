@@ -116,7 +116,7 @@ export const portfolioData = {
       title: "Urban Furniture",
       category: "Double-Entry ERP System",
       tech: "Next.js 16 • React • TypeScript • FastAPI • PostgreSQL (Neon) • Tailwind CSS",
-      description: "Full-stack double-entry ERP accounting system developed for Odoo Hackathon 2026 Round 2 (Runner Up). Automated journal entries, master data management, and real-time Balance Sheet / P&L reporting.",
+      description: "Full-stack double-entry ERP accounting system developed for Odoo Hackathon 2026 Round 2. Automated journal entries, master data management, and real-time Balance Sheet / P&L reporting.",
       link: "https://github.com/KunalWaghe/Urban-Furniture-Accounting-System---Outliers",
       github: "https://github.com/KunalWaghe/Urban-Furniture-Accounting-System---Outliers",
       image: "/images/work-items/work-item-4.jpg"
@@ -174,9 +174,7 @@ export const portfolioData = {
  */
 export async function getPortfolioData() {
   try {
-    const baseUrl = (typeof import.meta !== "undefined" && import.meta.env?.BASE_URL) || "./";
-    const dataUrl = baseUrl.endsWith("/") ? `${baseUrl}data/portfolio.json` : `${baseUrl}/data/portfolio.json`;
-    const response = await fetch(dataUrl);
+    const response = await fetch("/data/portfolio.json");
     if (response.ok) {
       return await response.json();
     }

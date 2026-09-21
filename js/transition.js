@@ -61,20 +61,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Direct path match
     if (href === currentPath) return true;
 
-    // Handle root/index page variations
-    if (
-      (currentPath === "/" || currentPath === "/index.html") &&
-      (href === "/" ||
-        href === "/index.html" ||
-        href === "index.html" ||
-        href === "./index.html")
-    ) {
-      return true;
-    }
+    // Normalize filenames for subpath deployments (e.g. GitHub Pages /portfolio/)
+    const currentFileName = currentPath.split("/").filter(Boolean).pop() || "index.html";
+    const hrefClean = href.replace(/^\.\//, "");
+    const hrefFileName = hrefClean.split("/").filter(Boolean).pop() || "index.html";
 
-    // Compare file names for matching pages
-    const currentFileName = currentPath.split("/").pop() || "index.html";
-    const hrefFileName = href.split("/").pop();
     if (currentFileName === hrefFileName) return true;
 
     return false;

@@ -174,7 +174,9 @@ export const portfolioData = {
  */
 export async function getPortfolioData() {
   try {
-    const response = await fetch("/data/portfolio.json");
+    const baseUrl = (typeof import.meta !== "undefined" && import.meta.env?.BASE_URL) || "./";
+    const dataUrl = baseUrl.endsWith("/") ? `${baseUrl}data/portfolio.json` : `${baseUrl}/data/portfolio.json`;
+    const response = await fetch(dataUrl);
     if (response.ok) {
       return await response.json();
     }

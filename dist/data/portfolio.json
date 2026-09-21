@@ -113,7 +113,7 @@
       "title": "Urban Furniture",
       "category": "Double-Entry ERP System",
       "tech": "Next.js 16 • React • TypeScript • FastAPI • PostgreSQL (Neon) • Tailwind CSS",
-      "description": "Full-stack double-entry ERP accounting system developed for Odoo Hackathon 2026 Round 2. Automated journal entries, master data management, and real-time Balance Sheet / P&L reporting.",
+      "description": "Full-stack double-entry ERP accounting system developed for Odoo Hackathon 2026 Round 2 (Runner Up). Automated journal entries, master data management, and real-time Balance Sheet / P&L reporting.",
       "link": "https://github.com/KunalWaghe/Urban-Furniture-Accounting-System---Outliers",
       "github": "https://github.com/KunalWaghe/Urban-Furniture-Accounting-System---Outliers",
       "image": "/images/work-items/work-item-4.jpg"

@@ -1,4 +1,4 @@
-import{p as o}from"./transition-DqSwuqk9.js";document.addEventListener("DOMContentLoaded",()=>{if(!document.querySelector(".page.contact-page"))return;const y=document.querySelector(".logo a");y&&(y.textContent=o.personal.initials);const b=document.querySelector(".contact-card-header-main");b&&(b.innerHTML=`
+import{p as o}from"./transition-LMLDjkhm.js";document.addEventListener("DOMContentLoaded",()=>{if(!document.querySelector(".page.contact-page"))return;const y=document.querySelector(".logo a");y&&(y.textContent=o.personal.initials);const b=document.querySelector(".contact-card-header-main");b&&(b.innerHTML=`
       <h1>${o.contact.headline}</h1>
       <p>${o.contact.description}</p>
     `);const h=document.querySelector(".contact-info");h&&(h.innerHTML=`
